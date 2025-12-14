@@ -6,7 +6,7 @@
 /*   By: gboewer <gboewer@student.42luxembourg.l    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 20:04:02 by gboewer           #+#    #+#             */
-/*   Updated: 2025/12/14 14:36:28 by gboewer          ###   ########.fr       */
+/*   Updated: 2025/12/14 21:24:44 by gboewer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,10 @@
 
 #include "dict.h"
 #include "helper.h"
-#include "input.h"
+#include "read.h"
 #include "error.h"
 
 #define DEFAULT_DICT "numbers.dict"
-
-int read_args(int argc, char *argv[], char *nbr_str, char *dict_file){
-
-}
-
-void print_hnum(char *hnum, size_t size, t_dict *dict){
-
-}
-
-void print_illion(size_t i, t_dict *dict){
-
-}
-
-void print_number_name(char *nbr_str, t_dict *dict){
-	size_t i = 0;
-	while(i < dict->n_exacts){
-		if(!strmp(nbr_str, dict->exacts[i])){
-			putstr(dict->exacts[i]);
-			return 0;
-		}
-		i++;
-	}
-
-	size_t size = strlen(nbr_str);
-	size_t first_hsize = size % 3;
-	if(first_hsize == 0)
-		first_hsize = 3;
-	print_hnum(nbr_str, first_hsize, &dict);
-	nbr_str += first_hsize;
-	size -= first_hsize;
-	print_illion(size, &dict);
-
-	while(*nbr_str){
-		print_hnum(nbr_str, 3, &dict);
-		nbr_str += 3;
-		size -= 3;
-		print_illion(size, &dict);
-	}
-}
 
 int main(int argc, char *argv[])
 {
@@ -71,7 +32,7 @@ int main(int argc, char *argv[])
 	else if(argc == 2){
 		nbr_str = argv[2];
 		dict_file = argv[1];
-	} else print_error();
+	} else write(2, "Error\n", 6);
 
 	if(read_dictionary(&dict, dict_file) == -1)
 	{

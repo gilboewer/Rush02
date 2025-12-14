@@ -6,7 +6,7 @@
 /*   By: gboewer <gboewer@student.42luxembourg.l    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 12:00:17 by gboewer           #+#    #+#             */
-/*   Updated: 2025/12/14 19:33:51 by gboewer          ###   ########.fr       */
+/*   Updated: 2025/12/14 21:42:21 by gboewer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ static void ft_cpybuf(char *dest, char *src, size_t n){
 	}
 }
 
-static void *ft_concatenate(char *str, char *added_str, size_t size, size_t added_size){
+static char *ft_concatenate(char *str, char *added_str, size_t size, size_t added_size){
 	char *newstr = malloc(size + added_size + 1);
+	if(!newstr)
+		return NULL;
 	ft_cpybuf(newstr, str, size);
 	ft_cpybuf(newstr + size, added_str, added_size);
 	newstr[size + added_size] = '\0';
@@ -35,7 +37,7 @@ static void *ft_concatenate(char *str, char *added_str, size_t size, size_t adde
 	return newstr;
 }
 
-int ft_read_dictionary(char **dict_str_ptr, char *dict_file){
+int ft_read_dictionary(char *dict_file ,char **dict_str_ptr){
 	int fd = open(dict_file, O_RDONLY);
 	if(fd == -1)
 		return -1;
@@ -48,8 +50,10 @@ int ft_read_dictionary(char **dict_str_ptr, char *dict_file){
 
 	while(bytes > 0){
 		bytes = read(fd, buf, BUF_SIZE);
-		if(bytes == -1)
+		if(bytes == -1){
+			close(fd);
 			return -1;
+		}
 
 		dict_str = ft_concatenate(dict_str, buf, size, bytes);
 		size += bytes;
