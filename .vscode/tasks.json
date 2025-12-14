@@ -12,6 +12,8 @@
                 "helper.c",
 				"parse.c",
 				"numbertowords.c",
+				"hundreds.c",
+				"words_utils.c",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],

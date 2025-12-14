@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   numbertowords.h                                    :+:      :+:    :+:   */
+/*   hundreds.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gboewer <gboewer@student.42luxembourg.l    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/14 19:46:34 by jofiguer          #+#    #+#             */
-/*   Updated: 2025/12/14 22:33:11 by gboewer          ###   ########.fr       */
+/*   Created: 2025/12/14 21:32:00 by jofiguer          #+#    #+#             */
+/*   Updated: 2025/12/14 22:31:18 by gboewer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NUMBERTOWORDS_H
-#define NUMBERTOWORDS_H
+#ifndef HUNDREDS_H
+# define HUNDREDS_H
 
-#include "dict.h"
+# include "dict.h"
 
-void	print_number_words(char *num, t_dict *dict, int dsize);
+void	print_hundreds(int n, t_dict *dict, int dsize, int *first);
 
 #endif
