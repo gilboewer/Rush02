@@ -1,25 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
+/*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gboewer <gboewer@student.42luxembourg.l    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 12:00:17 by gboewer           #+#    #+#             */
-/*   Updated: 2025/12/13 15:18:45 by gboewer          ###   ########.fr       */
+/*   Updated: 2025/12/14 19:27:54 by gboewer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
 
-#include "dict.h"
 #include "helper.h"
 
-int parse_dictionary(char *dict_str, t_dict *dict);
+#define BUF_SIZE 1024
 
-void *realloc(void *ptr, size_t size);
+static void ft_cpybuf(char *dest, char *src, size_t n){
+	size_t i = 0;
+	while(i < n){
+		dest[i] = src[i];
+		i++;
+	}
+}
 
-int init_dictionary(t_dict *dict, char *dict_file){
+static void *ft_concatenate(char *str, char *added_str, size_t size, size_t added_size){
+	char *newstr = malloc(size + added_size + 1);
+	ft_cpybuf(newstr, str, size);
+	ft_cpybuf(newstr + size, added_str, added_size);
+	newstr[size + added_size] = '\0';
+	free(str);
+	return newstr;
+}
+
+int ft_read_dictionary(char **dict_str_ptr, char *dict_file){
 	int fd = open(dict_file, O_RDONLY);
 	if(fd == -1)
 		return -1;
@@ -27,26 +44,21 @@ int init_dictionary(t_dict *dict, char *dict_file){
 	char *dict_str = malloc(1);
 	size_t size = 0;
 
-	const size_t BUF_SIZE = 1024;
 	char buf[BUF_SIZE];
 	ssize_t bytes = 1;
 
 	while(bytes > 0){
 		bytes = read(fd, buf, BUF_SIZE);
-		dict_str = realloc(dict_str, size + bytes + 1);
-
 		if(bytes == -1)
 			return -1;
 
-		size_t i = 0;
-		while(i < bytes){
-			dict_str[size + i] = buf[i];
-			i++;
-		}
+		dict_str = ft_concatenate(dict_str, buf, size, bytes);
 		size += bytes;
 	}
-	dict_str[size] = '\0';
-	putstr(dict_str);
 
-	parse_dict(dict_str, dict);
+	*dict_str_ptr = dict_str;
+
+	close(fd);
+
+	return 0;
 }

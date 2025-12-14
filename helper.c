@@ -6,17 +6,19 @@
 /*   By: gboewer <gboewer@student.42luxembourg.l    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 12:12:50 by gboewer           #+#    #+#             */
-/*   Updated: 2025/12/13 13:33:12 by gboewer          ###   ########.fr       */
+/*   Updated: 2025/12/14 19:31:51 by gboewer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-// To implement
-// size_t strlen(char *str);
-// int strcmp(char *s1, char *s2);
-// void putstr(char *str);
+void ft_putstr(char *str){
+	while(*str){
+		write(1, str, 1);
+		str++;
+	}
+}
 
-void print_dict_error(){
+void ft_print_dict_error(){
 	write(2, "Dict Error\n", 11);
 }
