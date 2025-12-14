@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "helper.h"
 #include "dict.h"
+#include "helper.h"
+#include <stdlib.h>
 
 char	*dict_lookup(t_dict *dict, int size, char *key)
 {

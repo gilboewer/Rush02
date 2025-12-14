@@ -35,7 +35,7 @@ static void	print_chunk(int v, int rem, t_dict *d, int s, int *f)
 
 void	print_number_words(char *num, t_dict *dict, int dsize)
 {
-	int	len, groups, i, first, glen, val;
+	int len, groups, i, first, glen, val;
 	while (*num == '0' && num[1])
 		num++;
 	len = ft_strlen(num);

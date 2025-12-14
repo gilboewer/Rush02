@@ -6,99 +6,107 @@
 /*   By: gboewer <gboewer@student.42luxembourg.l    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:23:58 by gboewer           #+#    #+#             */
-/*   Updated: 2025/12/14 21:15:59 by gboewer          ###   ########.fr       */
+/*   Updated: 2025/12/14 22:58:53 by gboewer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
 #include "dict.h"
+#include <stdlib.h>
+#include <unistd.h>
 
-static size_t ft_skip_spaces(char *s, size_t i)
+static size_t	ft_skip_spaces(char *s, size_t i)
 {
-    while (s[i] == ' ' || s[i] == '\t')
-        i++;
-    return i;
+	while (s[i] == ' ' || s[i] == '\t')
+		i++;
+	return (i);
 }
 
-static char *ft_parse_number(char *dict_str, size_t *i)
+static char	*ft_parse_number(char *dict_str, size_t *i)
 {
-    size_t start;
-    size_t len;
-    char *num;
+	size_t	start;
+	size_t	len;
+	char	*num;
+	size_t	j;
 
-    start = *i;
-    while (dict_str[*i] >= '0' && dict_str[*i] <= '9')
-        (*i)++;
-    len = *i - start;
-
-    num = malloc(len + 1);
-
-    size_t j = 0;
-    while(j < len){
-        num[j] = dict_str[start + j];
+	start = *i;
+	while (dict_str[*i] >= '0' && dict_str[*i] <= '9')
+		(*i)++;
+	len = *i - start;
+	num = malloc(len + 1);
+	j = 0;
+	while (j < len)
+	{
+		num[j] = dict_str[start + j];
 		j++;
 	}
-    num[len] = '\0';
-    return num;
+	num[len] = '\0';
+	*i = ft_skip_spaces(dict_str, *i);
+	return (num);
 }
 
-static char *ft_parse_word(char *dict_str, size_t *i)
+static char	*ft_parse_word(char *dict_str, size_t *i)
 {
-    size_t start;
-    size_t len;
-    char *word;
+	size_t	start;
+	size_t	len;
+	char	*word;
+	size_t	j;
 
-    start = *i;
-    while (dict_str[*i] && dict_str[*i] != '\n')
-        (*i)++;
-    len = *i - start;
-
-    word = malloc(len + 1);
-
-	size_t j = 0;
-    while(j < len){
-        word[j] = dict_str[start + j];
+	*i = ft_skip_spaces(dict_str, *i);
+	start = *i;
+	while (dict_str[*i] && dict_str[*i] != '\n')
+		(*i)++;
+	len = *i - start;
+	word = malloc(len + 1);
+	j = 0;
+	while (j < len)
+	{
+		word[j] = dict_str[start + j];
 		j++;
 	}
-    word[len] = '\0';
-    return word;
+	word[len] = '\0';
+	return (word);
 }
 
-static size_t ft_count_lines(char *dict_str){
-	size_t count = 0;
-	size_t i = 0;
-	while(dict_str[i]){
-		if(dict_str[i] == '\n')
+static size_t	ft_count_lines(char *dict_str)
+{
+	size_t	count;
+	size_t	i;
+
+	count = 0;
+	i = 0;
+	while (dict_str[i])
+	{
+		if (dict_str[i] == '\n')
 			count++;
 		i++;
 	}
-	return count;
+	return (count);
 }
 
-int ft_parse_dictionary(char *dict_str, t_dict **dicts_ptr, int *dsize)
+int	ft_parse_dictionary(char *dict_str, t_dict **dicts_ptr, int *dsize)
 {
-    size_t i = 0;
-	size_t line = 0;
-	size_t line_count = ft_count_lines(dict_str);
-    char *number;
-    char *word;
+	size_t	i;
+	size_t	line;
+	size_t	line_count;
+	char	*number;
+	char	*word;
+	t_dict	*dicts;
+	t_dict dict;
 
-	t_dict *dicts = malloc(line_count * sizeof(t_dict));
-
-    while (line < line_count)
-    {
-		t_dict dict;
-        dict.key = ft_parse_number(dict_str, &i);
-		i = ft_skip_spaces(dict_str, i);
-        i++;
-		i = ft_skip_spaces(dict_str, i);
-        dict.value = ft_parse_word(dict_str, &i);
+	i = 0;
+	line = 0;
+	line_count = ft_count_lines(dict_str);
+	dicts = malloc(line_count * sizeof(t_dict));
+	while (line < line_count)
+	{
+		dict.key = ft_parse_number(dict_str, &i);
+		i++;
+		dict.value = ft_parse_word(dict_str, &i);
 		i++;
 		dicts[line] = dict;
 		line++;
-    }
+	}
 	*dicts_ptr = dicts;
-    *dsize = line_count;
-	return 0;
+	*dsize = line_count;
+	return (0);
 }

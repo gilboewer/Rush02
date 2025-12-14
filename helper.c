@@ -12,8 +12,10 @@
 
 #include <unistd.h>
 
-void ft_putstr(char *str){
-	while(*str){
+void	ft_putstr(char *str)
+{
+	while (*str)
+	{
 		write(1, str, 1);
 		str++;
 	}
@@ -26,7 +28,9 @@ void	ft_putchar(char c)
 
 int	ft_strlen(char *s)
 {
-	int	i = 0;
+	int	i;
+
+	i = 0;
 	while (s[i])
 		i++;
 	return (i);
@@ -34,7 +38,7 @@ int	ft_strlen(char *s)
 
 int	ft_strcmp(char *a, char *b)
 {
-	int	i = 0;
+	int i = 0;
 	while (a[i] && b[i] && a[i] == b[i])
 		i++;
 	return ((unsigned char)a[i] - (unsigned char)b[i]);
