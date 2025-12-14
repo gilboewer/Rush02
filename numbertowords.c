@@ -6,7 +6,7 @@
 /*   By: gboewer <gboewer@student.42luxembourg.l    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 21:32:00 by jofiguer          #+#    #+#             */
-/*   Updated: 2025/12/14 22:35:20 by gboewer          ###   ########.fr       */
+/*   Updated: 2025/12/14 23:16:02 by gboewer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,13 @@ static void	print_chunk(int v, int rem, t_dict *d, int s, int *f)
 
 void	print_number_words(char *num, t_dict *dict, int dsize)
 {
-	int len, groups, i, first, glen, val;
+	int	len;
+	int	groups;
+	int	first;
+	int	glen;
+	int	val;
+	int	i;
+
 	while (*num == '0' && num[1])
 		num++;
 	len = ft_strlen(num);

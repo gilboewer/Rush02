@@ -6,7 +6,7 @@
 /*   By: gboewer <gboewer@student.42luxembourg.l    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:23:58 by gboewer           #+#    #+#             */
-/*   Updated: 2025/12/14 22:58:53 by gboewer          ###   ########.fr       */
+/*   Updated: 2025/12/14 23:23:18 by gboewer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,8 @@ int	ft_parse_dictionary(char *dict_str, t_dict **dicts_ptr, int *dsize)
 	size_t	i;
 	size_t	line;
 	size_t	line_count;
-	char	*number;
-	char	*word;
 	t_dict	*dicts;
-	t_dict dict;
+	t_dict	dict;
 
 	i = 0;
 	line = 0;

@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #ifndef READ_H
-#define READ_H
+# define READ_H
 
-int ft_read_dictionary(char *dict_file, char **dict_str_ptr);
+int	ft_read_dictionary(char *dict_file, char **dict_str_ptr);
 
 #endif
