@@ -6,13 +6,12 @@
 /*   By: gboewer <gboewer@student.42luxembourg.l    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:23:58 by gboewer           #+#    #+#             */
-/*   Updated: 2025/12/14 19:25:40 by gboewer          ###   ########.fr       */
+/*   Updated: 2025/12/14 19:33:48 by gboewer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
-
 #include "dict.h"
 
 static size_t ft_skip_spaces(char *s, size_t i)

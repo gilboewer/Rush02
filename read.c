@@ -6,7 +6,7 @@
 /*   By: gboewer <gboewer@student.42luxembourg.l    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 12:00:17 by gboewer           #+#    #+#             */
-/*   Updated: 2025/12/14 19:27:54 by gboewer          ###   ########.fr       */
+/*   Updated: 2025/12/14 19:33:51 by gboewer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
-
 #include "helper.h"
 
 #define BUF_SIZE 1024
