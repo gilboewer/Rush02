@@ -1,16 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.h                                           :+:      :+:    :+:   */
+/*   numbertowords.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jofiguer <jofiguer@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/13 12:12:21 by gboewer           #+#    #+#             */
-/*   Updated: 2025/12/14 19:51:50 by jofiguer         ###   ########.fr       */
+/*   Created: 2025/12/14 19:46:34 by jofiguer          #+#    #+#             */
+/*   Updated: 2025/12/14 19:47:10 by jofiguer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void ft_putstr(char *str);
-void ft_putchar(char c);
-int	ft_strlen(char *s);
-int	ft_strcmp(char *a, char *b);
+#include "dict.h"
+
+void	print_number_words(char *num, t_dict *dict, int dsize);

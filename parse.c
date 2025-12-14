@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gboewer <gboewer@student.42luxembourg.l    +#+  +:+       +#+        */
+/*   By: jofiguer <jofiguer@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:23:58 by gboewer           #+#    #+#             */
-/*   Updated: 2025/12/14 19:33:48 by gboewer          ###   ########.fr       */
+/*   Updated: 2025/12/14 19:58:17 by jofiguer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static size_t ft_count_lines(char *dict_str){
 	return count;
 }
 
-int ft_parse_dictionary(char *dict_str, t_dict **dicts_ptr)
+int ft_parse_dictionary(char *dict_str, t_dict **dicts_ptr, int *dsize)
 {
     size_t i = 0;
 	size_t line = 0;
@@ -99,5 +99,6 @@ int ft_parse_dictionary(char *dict_str, t_dict **dicts_ptr)
 		line++;
     }
 	*dicts_ptr = dicts;
+    *dsize = line_count;
 	return 0;
 }

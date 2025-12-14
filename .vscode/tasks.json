@@ -11,6 +11,7 @@
                 "read.c",
                 "helper.c",
 				"parse.c",
+				"numbertowords.c",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],
